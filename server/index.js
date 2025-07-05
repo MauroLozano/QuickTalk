@@ -5,8 +5,12 @@ import { WebSocketServer } from 'ws'
 
 const server = http.createServer(async (req,res)=>{ //Creates the HTTP server and handles requests
     let filePath = req.url === '/' ? '/index.html' : req.url;   // If the request is for the root, serve index.html, otherwise serve the requested file
-    let fullPath = path.join(process.cwd(),'client', filePath); // Joins the current working directory with the 'client' folder and the requested file path
+    
+    // Ensure the requested files are in the 'public' directory, or where Webpack outputs the files.
+    let fullPath = path.join(process.cwd(),'public', filePath); // Joins the current working directory with the 'public' folder and the requested file path
+
     try{
+        console.log(`Request for ${fullPath}`)   // Logs the requested file
         const data = await fs.readFile(fullPath); // Reads the file from the filesystem
         // Determine the content type based on the file extension
         let ext = path.extname(fullPath);
@@ -15,7 +19,6 @@ const server = http.createServer(async (req,res)=>{ //Creates the HTTP server an
         if (ext === '.js') contentType = 'application/javascript'
         if (ext === '.css') contentType = 'text/css'
         res.writeHead(200, {'Content-Type': contentType})   // Sets the response header with the content type
-        console.log(`Serving ${fullPath}`)   // Logs the file being served
         res.end(data)   // Sends the file data as the response
     }catch{
         res.writeHead(404,{'Content-Type': 'text/plain'})   // If the file is not found, set the response header to 404
@@ -23,7 +26,7 @@ const server = http.createServer(async (req,res)=>{ //Creates the HTTP server an
     }
 })
 server.listen(3000, ()=>{   // Starts the server on port 3000
-    console.log('server listening on por 3000')
+    console.log('Server listening on 3000')
 })
 
 const wss = new WebSocketServer({server})   // Creates a WebSocket server using the HTTP server
