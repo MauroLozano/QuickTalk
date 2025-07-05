@@ -22,7 +22,7 @@ const server = http.createServer(async (req,res)=>{ //Creates the HTTP server an
         res.end(data)   // Sends the file data as the response
     }catch{
         res.writeHead(404,{'Content-Type': 'text/plain'})   // If the file is not found, set the response header to 404
-        res.end('File not found')   // Sends a 'File not found' message
+        res.end('File not found')
     }
 })
 server.listen(3000, ()=>{   // Starts the server on port 3000

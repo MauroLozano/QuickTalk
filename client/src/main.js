@@ -1,2 +1,2 @@
 import * as client from './client.js';
-import '../styles/global.css';
+import '../styles/main.css';

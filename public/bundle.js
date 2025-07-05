@@ -26,17 +26,17 @@ eval("__webpack_require__.r(__webpack_exports__);\nconst ws = new WebSocket('ws:
   \****************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _client_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./client.js */ \"./client/src/client.js\");\n/* harmony import */ var _styles_global_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/global.css */ \"./client/styles/global.css\");\n\r\n\n\n//# sourceURL=webpack://chat/./client/src/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _client_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./client.js */ \"./client/src/client.js\");\n/* harmony import */ var _styles_main_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/main.css */ \"./client/styles/main.css\");\n\r\n\n\n//# sourceURL=webpack://chat/./client/src/main.js?");
 
 /***/ }),
 
-/***/ "./client/styles/global.css":
-/*!**********************************!*\
-  !*** ./client/styles/global.css ***!
-  \**********************************/
+/***/ "./client/styles/main.css":
+/*!********************************!*\
+  !*** ./client/styles/main.css ***!
+  \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://chat/./client/styles/global.css?");
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://chat/./client/styles/main.css?");
 
 /***/ })
 

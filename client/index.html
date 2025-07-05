@@ -3,11 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Permanent+Marker&display=swap" rel="stylesheet">
     <!-- HtmlWebpackPlugin adds the scripts and css -->
-    <title>Chat</title>
+    <title>QuickTalk</title>
 </head>
 <body>
-    <h1>Chat web Page</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, ab laborum. Saepe ratione distinctio, deserunt qui ipsa maiores tenetur quasi obcaecati, hic quaerat adipisci aperiam sapiente eligendi at esse totam?</p>
+    <header>
+        <h1 id="title">QuickTalk</h1>
+    </header>
+    <section id="contacts">
+        <div class="contact"></div>
+        <div class="contact"></div>
+        <div class="contact"></div>
+        <div class="contact"></div>
+        <div class="contact"></div>
+    </section>
+    <section id="chat">
+        <form id="chat-form">
+            <input type="text" name="message" id="input" placeholder="Type your message here..." autocomplete="off" required>
+            <button type="submit" id="btn-send">SEND</button>
+        </form>
+    </section>
 </body>
 </html>
