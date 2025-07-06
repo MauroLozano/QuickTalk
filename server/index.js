@@ -36,4 +36,16 @@ wss.on('connection', (ws) =>{   // Handles new WebSocket connections
     ws.on('close', () => {  // Handles when a WebSocket connection is closed
         console.log('Client disconnected')
     })
+    ws.on('message', (msg) => { // Handles when a Websocket recives a message
+        try{
+            const data = JSON.parse(msg);   // Parses the incoming stringified message as JSON
+            wss.clients.forEach((client)=>{
+                client.send(JSON.stringify(data))  // Sends the message to all connected clients as a JSON string
+            })
+        }catch{
+            console.log('Error parsing message:', msg);  // Logs an error if the message cannot be parsed
+        }
+
+    });
 })
+
