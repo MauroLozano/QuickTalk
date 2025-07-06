@@ -5,6 +5,7 @@ const form = document.getElementById('chat-form');
 const input = document.getElementById('input');
 const submitBtn = document.getElementById('btn-send')
 const messages = document.getElementById('messages')
+
 socket.onopen = ()=>{   // Event handler for when the WebSocket connection is opened
     console.log('Connected to the WebSocket server');
     form.addEventListener('submit', (e)=>{ //Listens when the submit button is activated

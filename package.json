@@ -13,6 +13,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@libsql/client": "^0.15.9",
+    "dotenv": "^17.0.1",
     "webpack": "5.99.9",
     "ws": "8.18.3"
   },
