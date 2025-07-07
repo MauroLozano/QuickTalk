@@ -23,20 +23,29 @@
     <section id="chat">
         <ul id="messages"></ul>
         <form id="chat-form">
-            <input type="text" name="message" id="input" placeholder="Type your message here..." autocomplete="off" required>
+            <input type="text" name="message" id="chat-input" placeholder="Type your message here..." autocomplete="off" required>
             <button type="submit" id="btn-send">SEND</button>
         </form>
         <div class="chat-blur"></div>
     </section>
-    <div class="login-modal--enabled">
-        <form id="login-form">
+    <div class="auth-modal--enabled">
+        <form id="login-form" class="auth-form--enabled">
             <h2>Login</h2>
-            <label for="userName">Username:</label>
-            <input type="text" id="userNameInput" name="userName" required>
-            <label for="password">Password:</label>
-            <input type="password" id="passwordInput" name="password" required>
+            <p >Username:</p>
+            <input type="text" id="login-username" name="userName" required>
+            <p >Password:</p>
+            <input type="password" id="login-password" name="password" required>
             <button type="submit" id="login-btn">Login</button>
         </form>
+        <form id="register-form" class="auth-form--disabled">
+            <h2>Register</h2>
+            <p >Username:</p>
+            <input type="text" id="register-username" name="userName" required>
+            <p >Password:</p>
+            <input type="password" id="register-password" name="password" required>
+            <button type="submit" id="login-btn">Login</button>
+        </form>
+        <button id="authChange"></button>
     </div>
 </body>
 </html>

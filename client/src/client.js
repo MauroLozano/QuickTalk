@@ -1,21 +1,23 @@
 const socket = new WebSocket('ws://localhost:3000'); // Creates a new WebSocket connection to the server at ws://localhost:3000
 console.log('WebSocket client initialized'); // Log to indicate the client has been initialized
 
-const form = document.getElementById('chat-form');
-const input = document.getElementById('input');
+// Chat element references
+const chatForm = document.getElementById('chat-form');
+const chatInput = document.getElementById('chat-chatInput');
 const submitBtn = document.getElementById('btn-send')
 const messages = document.getElementById('messages')
 
+// The following code handles the WebSocket connection and message sending/receiving
 socket.onopen = ()=>{   // Event handler for when the WebSocket connection is opened
     console.log('Connected to the WebSocket server');
-    form.addEventListener('submit', (e)=>{ //Listens when the submit button is activated
-        e.preventDefault(); // Prevents the default form submission behavior
-        if(input.value){    // Checks if the input field is not empty
-            socket.send(JSON.stringify({  // Sends a message to the WebSocket server in a String format, Websockets require messages to be sent as strings or binary data
+    chatForm.addEventListener('submit', (e)=>{ //Listens when the submit button is activated
+        e.preventDefault(); // Prevents the default chatForm submission behavior
+        if(chatInput.value){    // Checks if the chatInput field is not empty
+            socket.send(JSON.stringify({  // Sends a message to the WebSocket server in a String chatFormat, Websockets require messages to be sent as strings or binary data
                 type: 'message',
-                content: input.value,
+                content: chatInput.value,
             }));
-            input.value=''; // Clears the input field after sending the message
+            chatInput.value=''; // Clears the chatInput field after sending the message
         }
     })
 }

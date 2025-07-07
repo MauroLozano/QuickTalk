@@ -66,7 +66,7 @@ header {
     padding: 0 2rem;
     z-index: 2;
 }
-#input{
+#chat-input{
     height: 4rem;
     width: auto;
     font-size: 1.4rem;
@@ -126,17 +126,22 @@ header {
     mask: linear-gradient(transparent,black,black);
     backdrop-filter: blur(1rem);
 }
-.login-modal--enabled{
+.auth-modal--enabled{
     position: absolute;
     width: 60vw;
     height: 80vh;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    background-color: #403d39;
+    background-color: #fffcf2;
     opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
 }
-.login-modal--disabled{
+.auth-modal--disabled{
     position: absolute;
     left: 50%;
     top: 50%;
@@ -151,11 +156,26 @@ header {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    height: 100%;
     width: 100%;
 }
-#login-btn{
-    
+#register-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+.auth-form--enabled{
+    display: flex;
+}
+.auth-form--disabled{
+    display: none !important; 
+}
+#authChange{
+    width: 200px;
+    height: 50px;
+    background-color: #eb5e28;
 }
 /*!**************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./client/styles/main.css ***!
