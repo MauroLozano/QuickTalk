@@ -16,6 +16,7 @@ body{
     grid-template-rows: 10vh auto;
     height: 100vh;
     font-family: Handlee;
+    position: relative;
 }
 header {
     grid-area: 1 / 1 / 2 / 3;
@@ -124,6 +125,37 @@ header {
     z-index: 0;
     mask: linear-gradient(transparent,black,black);
     backdrop-filter: blur(1rem);
+}
+.login-modal--enabled{
+    position: absolute;
+    width: 60vw;
+    height: 80vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #403d39;
+    opacity: 1;
+}
+.login-modal--disabled{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 60vw;
+    height: 80vh;
+    opacity: 0;
+}
+#login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+    width: 100%;
+}
+#login-btn{
+    
 }
 /*!**************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./client/styles/main.css ***!

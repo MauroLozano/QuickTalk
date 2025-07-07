@@ -11,16 +11,25 @@ const token = process.env.DB_TOKEN;
 if (!token) {
     throw new Error("DB_TOKEN is not defined in .env");
 }
-const db = createClient({   // Creates a database client using the LibSQL client
+export const db = createClient({   // Creates a database client using the LibSQL client
     url: "libsql://grateful-man-wolf-maurolozano.aws-us-east-1.turso.io",
     authToken: token || ''  // Uses the DB_TOKEN from the environment variables or an empty string if not set
 })
 await db.execute(`
+    CREATE TABLE IF NOT EXISTS users(
+        userId INTEGER PRIMARY KEY AUTOINCREMENT,
+        userName TEXT UNQIUE NOT NULL,
+        userPasswordHash TEXT UNIQUE NOT NULL,
+    );
     CREATE TABLE IF NOT EXISTS messages(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        messageId INTEGER PRIMARY KEY AUTOINCREMENT,
         content TEXT
     );
-`)
+`)//Make sure not to leave comas at the end of the last column definition
+
+
+
+
 
 //Http server to serve static files
 const server = http.createServer(async (req,res)=>{ //Creates the HTTP server and handles requests
@@ -51,30 +60,38 @@ server.listen(3000, ()=>{   // Starts the server on port 3000
 
 // WebSocket server to handle real-time communication and modify the database
 const wss = new WebSocketServer({server})   // Creates a WebSocket server using the HTTP server
-wss.on('connection', (ws) =>{   // Handles new WebSocket connections
+wss.on('connection', (socket) =>{   // Handles new WebSocket connections
     console.log('New conection')
-    ws.on('close', () => {  // Handles when a WebSocket connection is closed
+    socket.on('close', () => {  // Handles when a WebSocket connection is closed
         console.log('Client disconnected')
     })
-    ws.on('message', async (msg) => { // Handles when a Websocket recives a message
+    socket.on('message', async (msg) => { // Handles when a Websocket recives a message
         try{
             const data = JSON.parse(msg);   // Parses the incoming stringified message as JSON
-            
-            // Executes a SQL query to insert the message into the database
-            const result = await db.execute({   
-                sql: `INSERT INTO messages (content) VALUES (:content)`,
-                args: {content: data.content}  // Uses the content from the parsed message to insert into the database
-            })
-            if (!result.lastInsertRowid) {  // Checks if the last inserted row ID is not present, indicating an error in insertion
-                console.error("Could not insert message into the database");
-                return;
-            }
-            data.id = result.lastInsertRowid.toString();  // Adds the last inserted row ID to the data object, converting it to a string
 
-            // Sends the message to all connected WebSocket clients a JSON string
-            wss.clients.forEach((client)=>{
-                client.send(JSON.stringify(data))
-            })
+            if (data.type==='clientInfo'){ // Checks if the message type is 'clientInfo'
+                
+            }
+
+            if (data.type==='message'){ // Checks if the message type is 'message'
+                // Executes a SQL query to insert the message into the database
+                const result = await db.execute({
+                    sql: `INSERT INTO messages (content) VALUES (:content)`,
+                    args: {content: data.content}  // Uses the content from the parsed message to insert into the database
+                })
+                if (!result.lastInsertRowid) {  // Checks if the last inserted row ID is not present, indicating an error in insertion
+                    console.error("Could not insert message into the database");
+                    return;
+                }
+                data.id = result.lastInsertRowid.toString();  // Adds the last inserted row ID to the data object, converting it to a string
+
+                // Sends the message to all connected WebSocket clients as a JSON string
+                wss.clients.forEach((client)=>{
+                    client.send(JSON.stringify(data))
+                })
+            }else{
+                console.log('Unknown message type:', data.type);  // Logs an error if the message type is unknown
+            }
         }catch{
             console.log('Error parsing message:', msg);  // Logs an error if the message cannot be parsed
         }
