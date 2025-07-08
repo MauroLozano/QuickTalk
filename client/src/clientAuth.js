@@ -17,14 +17,14 @@ authChangeBtn.addEventListener('click',(e)=>{
         registerForm.classList.add('auth-form--disabled');
         loginForm.classList.remove('auth-form--disabled');
         loginForm.classList.add('auth-form--enabled');
-        authChangeBtn.textContent = 'Register';
+        authChangeBtn.textContent = '¿Don\'t have an account?';
     }
     else if(loginForm.classList.contains('auth-form--enabled')){
         loginForm.classList.remove('auth-form--enabled');
         loginForm.classList.add('auth-form--disabled');
         registerForm.classList.remove('auth-form--disabled');
         registerForm.classList.add('auth-form--enabled');
-        authChangeBtn.textContent = 'Login';
+        authChangeBtn.textContent = '¡I already have an account!';
     }
 })
 // The following code handles the registration form submission
@@ -43,11 +43,28 @@ loginForm.addEventListener('submit',(e)=>{
 async function register(userName, password) {
     const response = await fetch('/api/register', { // Sends a POST request to the server to register a new user
         method:'POST',
-        headers: {contentType: 'application/json'},
+        headers: {ContentType: 'application/json'},
         body: JSON.stringify({
             userName: userName,
             password: password
         })
     })
-    console.log('Register response:', response); // Logs the response from the server
+    const registerData = await response.json(); // Parses the response data as JSON
+    if (registerData.success){
+        registerForm.classList.remove('auth-form--enabled');
+        registerForm.classList.add('auth-form--disabled');
+        loginForm.classList.remove('auth-form--disabled');
+        loginForm.classList.add('auth-form--enabled');
+        authChangeBtn.textContent = '¿Don\'t have an account?';
+    }
+}
+async function login(userName, password) {
+    const response = await fetch('/api/login', {
+        method:'POST',
+        headers: {ContentType: 'application/json'},
+        body: JSON.stringify({
+            userName: userName,
+            password: password
+        })
+    })
 }

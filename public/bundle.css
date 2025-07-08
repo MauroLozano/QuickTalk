@@ -106,7 +106,6 @@ header {
     flex-shrink: 0;
     width: 100%;
     height: auto;
-    max-width: 100%;
     border-radius: 0.5rem;
     padding: 1rem;
     width: fit-content;
@@ -115,25 +114,25 @@ header {
     font-size: 1.2rem;
     overflow-wrap: break-word;
     white-space: normal;
-    z-index: 0;
 }
 .chat-blur{
     height: 8rem;
     bottom: 0;
     width: inherit;
     position: absolute;
-    z-index: 0;
     mask: linear-gradient(transparent,black,black);
     backdrop-filter: blur(1rem);
 }
 .auth-modal--enabled{
     position: absolute;
-    width: 60vw;
-    height: 80vh;
+    z-index: 5;
+    width: 40vw;
+    height: 60vh;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    background-color: #fffcf2;
+    background-color:#252422;
+    border-radius: 1rem;
     opacity: 1;
     display: flex;
     align-items: center;
@@ -174,8 +173,52 @@ header {
 }
 #authChange{
     width: 200px;
+    height: 30px;
+    background: none;
+    color: #fffcf2;
+    font-size: 1rem;
+    font-family: Handlee;
+    outline: none;
+    border: none;
+}
+.auth-modal--enabled h2{
+    font-size: 3rem;
+    font-family: Permanent Marker;
+    color: #eb5e28;
+    letter-spacing: 3px;
+}
+.auth-modal--enabled input{
+    text-align: center;
+    font-family: Handlee;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    width: 15rem;
+    height: auto;
+    outline: none;
+    border: none;
+    background-color: #fffcf2;
+}
+.auth-submit-btn{
+    width: 200px;
     height: 50px;
     background-color: #eb5e28;
+    outline: none;
+    border: none;
+    border-radius: 0.5rem;
+    font-family: Handlee;
+    font-size: 1.2rem;
+}
+.auth-modal--enabled label{
+    font-size: 2rem;
+    color:#fffcf2;
+}
+.modal-blur{
+    position: absolute;
+    backdrop-filter: blur(0.5rem);
+    width: 100vw;
+    height: 100vh;
+    z-index: 4;
 }
 /*!**************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./client/styles/main.css ***!

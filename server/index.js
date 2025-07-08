@@ -11,7 +11,7 @@ import { serveStaticFiles } from './static.js' // Importing the serveStaticFiles
 const server = http.createServer(async (req,res)=>{ //Creates the HTTP server and handles requests
     // Authentication API endpoints
     if(req.url === '/api/register' && req.method === 'POST'){
-        return registerUser(req,res)
+        return registerUser(req,res);
     }
     //Serve static files from the 'public' directory
     return serveStaticFiles(req,res);

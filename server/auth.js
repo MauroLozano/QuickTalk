@@ -13,12 +13,15 @@ export async function registerUser(req, res) {
                 args: {userName: body.userName}  // Uses the userName from the parsed body to check if the user already exists
             })
             if(resultUsername.rows.length > 0){
-                res.writeHead(400,{'Content-Type':'text/plain'}) // If the user already exists, sends a 400 Bad Request response
-                res.end('User already exists')  // Ends the response with an error message
+                res.writeHead(400,{'Content-Type':'application/json'}) // If the user already exists, sends a 400 Bad Request response
+                res.end(JSON.stringify({    // Ends the response with an error message in JSON format
+                    error: 'User already exists',  // Indicates that the user already exists
+                    success: false
+                }))
                 return;  // Exits the function to prevent further processing
             }else{
                 const userPasswordHash = await bcrypt.hash(body.password, saltRounds); // Hashes the password using bcrypt with the specified number of salt rounds
-                const resultRegistration = await db.execute({
+                const resultRegistration = await db.execute({   // Executes a SQL query to insert the new user into the database
                     sql: `INSERT INTO users (userName, userPasswordHash) VALUES (:userName, :userPasswordHash)`, // Executes a SQL query to insert the new user into the database
                     args: { userName: body.userName, userPasswordHash: userPasswordHash}
                 })
@@ -26,13 +29,15 @@ export async function registerUser(req, res) {
                 return res.end(JSON.stringify({  // Ends the response with the user ID and userName in JSON format
                     userId: resultRegistration.lastInsertRowid.toString(),  // Converts the last inserted row ID to a string, since SQLite returns it as a BigInt
                     userName: body.userName,
-                    register: true  // Indicates that the registration was successful
+                    success: true  // Indicates that the registration was successful
                 }))
             }
         }catch(err){
             console.error('Error during registration:', err);  // Logs an error if there is an issue during registration
         }
-
     })
     return;  // Exits the function to prevent further processing
+}
+export async function loginUser(req, res) {
+
 }

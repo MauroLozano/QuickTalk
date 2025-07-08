@@ -3,7 +3,7 @@ console.log('WebSocket client initialized'); // Log to indicate the client has b
 
 // Chat element references
 const chatForm = document.getElementById('chat-form');
-const chatInput = document.getElementById('chat-chatInput');
+const chatInput = document.getElementById('chat-input');
 const submitBtn = document.getElementById('btn-send')
 const messages = document.getElementById('messages')
 

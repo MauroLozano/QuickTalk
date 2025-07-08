@@ -30,22 +30,23 @@
     </section>
     <div class="auth-modal--enabled">
         <form id="login-form" class="auth-form--enabled">
-            <h2>Login</h2>
-            <p >Username:</p>
-            <input type="text" id="login-username" name="userName" required>
-            <p >Password:</p>
-            <input type="password" id="login-password" name="password" required>
-            <button type="submit" id="login-btn">Login</button>
+            <h2>LOGIN</h2>
+            <label for="login-username">Username:</label>
+            <input type="text" id="login-username" name="userName" required placeholder="Write your username">
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" name="password" required placeholder="Write your password">
+            <button type="submit" id="login-btn" class="auth-submit-btn">LOGIN</button>
         </form>
         <form id="register-form" class="auth-form--disabled">
-            <h2>Register</h2>
-            <p >Username:</p>
-            <input type="text" id="register-username" name="userName" required>
-            <p >Password:</p>
-            <input type="password" id="register-password" name="password" required>
-            <button type="submit" id="login-btn">Login</button>
+            <h2>SIGN UP </h2>
+            <label for="register-username">Username:</label>
+            <input type="text" id="register-username" name="userName" required placeholder="Choose a username">
+            <label for="register-password">Password:</label>
+            <input type="password" id="register-password" name="password" required placeholder="Choose a password">
+            <button type="submit" id="login-btn" class="auth-submit-btn">REGISTER</button>
         </form>
-        <button id="authChange"></button>
+        <button id="authChange">¿Don't have an account?</button>
     </div>
+    <div class="modal-blur"></div>
 </body>
 </html>
